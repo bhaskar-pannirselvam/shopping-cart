@@ -10,33 +10,28 @@ const shopReducer = (state = INITIAL_STATE, action) => {
     // console.log('test5');
     switch (action.type) {
         case actionTypes.ADD_TO_CART:
-
-
             const item = action.payload;
-            const inCart = state.cart.find(it => it.id === item.id ? true : false);
-
-            // console.log(item);
-            //console.log(inCart);
-
             return {
                 ...state,
-                cart: inCart ?
-                    state.cart.map((item) =>
-                        item.id === action.payload.id ?
-                            { ...item, qty: item.qty + 1 } : item)
-                    : [...state.cart, { ...item, qty: 1 }],
-                totQty: state.totQty + 1,
+                cart: [...state.cart, { ...item, }],
+                totQty: state.totQty + item.minQty,
 
             };
 
         case actionTypes.REMOVE_FROM_CART:
             return {
+                ...state,
+                totQty: state.totQty - state.cart.find((it) => it.id === action.payload.id ? true : false).qty,
+                cart: state.cart.filter((item) => item.id !== action.payload.id),
 
-            }
+            };
         case actionTypes.ADJUST_QTY:
-            return {}
-        case actionTypes.LOAD_CURR_ITEM:
-            return {}
+            return {
+                ...state,
+                totQty: state.totQty - state.cart.find((it) => it.id === action.payload.id ? true : false).qty + action.payload.qty,
+                cart: state.cart.map((item) =>
+                    item.id === action.payload.id ? { ...item, qty: +action.payload.qty } : item),
+            };
         default:
             return state;
 

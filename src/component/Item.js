@@ -1,27 +1,40 @@
 
 import React, { useState } from "react";
 import { connect } from 'react-redux';
-import { addToCart } from "../redux/actions";
+import { addToCart, removeFromCart, adjustQty } from "../redux/actions";
 
-const Item = (props, addToCart) => {
+const Item = (props, addToCart, removeFromCart, adjustQty) => {
     const image = require.context('../images', true);
     const [qty, setQty] = useState(props.qty);
+    const [warning, setWarning] = useState(props.warning);
     const itemProp = { ...props };
 
 
     const addHandler = () => {
         let newQty = qty + 1;
         itemProp.qty = newQty;
+        setWarning("");
         setQty(newQty);
-        props.addToCart(itemProp);
+        if (newQty === itemProp.minQty) {
+            props.addToCart(itemProp);
+        } else if (newQty >= itemProp.minQty) {
+            props.adjustQty(itemProp);
+        } else {
+            setWarning("Can't add items with quantity less than minimum quantity");
+        }
         // console.log(itemProp);
     }
 
     const removeHandler = () => {
         let newQty = qty - 1;
-        if (newQty >= 0) {
+        if (newQty >= itemProp.minQty) {
             setQty(newQty);
             itemProp.qty = newQty;
+            props.adjustQty(itemProp);
+        } else {
+            setQty(0);
+            itemProp.qty = newQty;
+            props.removeFromCart(itemProp);
         }
     }
 
@@ -40,6 +53,9 @@ const Item = (props, addToCart) => {
                 <p>Min Qty: {props.minQty}</p>
                 <div class="col_1of2 quantity-text">
                     <p>{props.curr} {props.price}</p>
+                </div>
+                <div>
+                    <p>{warning}</p>
                 </div>
             </div>
             <div class="inner_container">
@@ -65,19 +81,13 @@ const Item = (props, addToCart) => {
         </div>);
 
 
-    {/* return <div>
-        <div>
-            <img src={image(`./${props.image}`)} alt='item image' />
-        </div>
-        <div>
-            <h3>{props.name}</h3>
-        </div>
-    </div> */}
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         addToCart: (item) => dispatch(addToCart(item)),
+        removeFromCart: (item) => dispatch(removeFromCart(item)),
+        adjustQty: (item) => dispatch(adjustQty(item))
     }
 }
 

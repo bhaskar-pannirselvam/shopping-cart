@@ -8,23 +8,18 @@ export const addToCart = (item) => {
     };
 }
 
-// export const removeFromCart = (itemID) => {
-//     return {
-//         type: actionTypes.REMOVE_FROM_CART,
-//         payload: {
-//             id: itemId
-//         }
-//     };
-// }
+export const removeFromCart = (item) => {
+    return {
+        type: actionTypes.REMOVE_FROM_CART,
+        payload: item,
+    };
+}
 
-// export const adjustQty = (itemID, value) => {
-//     return {
-//         type: actionTypes.adjustQty,
-//         payload: {
-//             id: itemId,
-//             qty: value,
-//         }
-//     };
-// }
+export const adjustQty = (item) => {
+    return {
+        type: actionTypes.ADJUST_QTY,
+        payload: item
+    };
+}
 
 
