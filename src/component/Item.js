@@ -13,7 +13,8 @@ store.subscribe(() => {
 
 
 const Item = (props, addToCart, removeFromCart, adjustQty) => {
-    const image = require.context('../images', true);
+    const image = require(`../images/${props.image}`);
+   // const image = '../images/'+props.image;
     const [qty, setQty] = useState(props.qty);
     const [warning, setWarning] = useState(props.warning);
     const itemProp = { ...props };
@@ -48,40 +49,40 @@ const Item = (props, addToCart, removeFromCart, adjustQty) => {
     }
 
     return (
-        <div ><li class="grid_4 item">
-            <a href="#" class="btn-remove">
-                <i class="far fa-trash-alt"></i>
+        <div data-testid={`pid${props.id}`} ><li className="grid_4 item">
+            <a href="#" className="btn-remove">
+                <i className="far fa-trash-alt"></i>
             </a>
-            <div class="preview">
-                <img src={image(`./${props.image}`)} />
+            <div className="preview">
+                <img src={image} />
             </div>
-            <div class="details" data-price="{props.price}">
-                <h3>
+            <div className="details" data-price="{props.price}">
+                <h3 data-testid={`name${props.id}`}>
                     {props.name}
                 </h3>
-                <p>Min Qty: {props.minQty}</p>
-                <div class="col_1of2 quantity-text">
-                    <p>{props.curr} {props.price}</p>
+                <p data-testid={`min${props.id}`}>Min Qty: {props.minQty}</p>
+                <div className="col_1of2 quantity-text">
+                    <p data-testid={`value${props.id}`}>{props.curr} {props.price}</p>
                 </div>
                 <div>
-                    <p>{warning}</p>
+                    <p data-testid={`msg${props.id}`}>{warning}</p>
                 </div>
             </div>
-            <div class="inner_container">
+            <div className="inner_container">
 
-                <div class="col_1of2 align-center picker">
+                <div className="col_1of2 align-center picker">
                     <p>
-                        <button onClick={addHandler}>
+                        <button data-testid={`add${props.id}`} onClick={addHandler}>
                             +
                         </button>
-                    </p><div class="col_1of2 quantity-text">
-                        <p><span class="current_quantity">{qty}</span>  </p>
+                    </p><div className="col_1of2 quantity-text">
+                        <p><span data-testid={`qty${props.id}`}className="current_quantity">{qty}</span>  </p>
                     </div>
-                    <button onClick={removeHandler}>
+                    <button data-testid={`rem${props.id}`} onClick={removeHandler}>
                         -
                     </button>
                     <p></p>
-                    <input type="hidden" class="quantity_field" name="quantity" data-price="{props.price}" value="1" />
+                    <input type="hidden" className="quantity_field" name="quantity" data-price="{props.price}" value="1" />
                 </div>
             </div>
 

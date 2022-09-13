@@ -12,14 +12,14 @@ function Products(props) {
         <div >
             <div className="grid_12 header">
                 <div >
-                    <h1>Shopping cart Project </h1>
+                    <h1 data-testid="products-header">Shopping cart Project </h1>
                 </div>
 
 
                 <div >
                     <Link to="/checkout">
                         <img src="https://www.cookfood.net/Content/images/basket2.png" />
-                        <h3>Items: {props.totQty}</h3>
+                        <h3 data-testid={`cartQty`}>Items: {props.totQty}</h3>
                     </Link>
                 </div>
             </div>
@@ -31,7 +31,9 @@ function Products(props) {
                     minQty={it.minQuantity}
                     curr={it.currency}
                     qty={0}
-                    id={it.id} />)}
+                    id={it.id} 
+                    key={it.id}
+                    />)}
             </div>
 
 

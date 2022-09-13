@@ -1,6 +1,6 @@
 import * as actionTypes from "./action-types";
 
-const INITIAL_STATE = {
+export const INITIAL_STATE = {
     cart: [],
     currentItem: null,
     totQty: 0,

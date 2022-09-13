@@ -4,7 +4,7 @@ import React, { useState } from "react";
 
 
 const CartItem = (props) => {
-    const image = require.context('../images', true);
+    const image = require(`../images/${props.image}`);
     const value = props.price * props.qty;
     return (
         <div ><li className="grid_4 item">
@@ -12,22 +12,22 @@ const CartItem = (props) => {
                 <i className="far fa-trash-alt"></i>
             </a>
             <div className="preview">
-                <img src={image(`./${props.image}`)} />
+                <img src={image} />
             </div>
-            <div className="details" data-price="{props.price}">
-                <h3>
+            <div className="details" >
+                <h3 data-testid={`name${props.id}`}>
                     {props.name}
                 </h3>
-                <p> Qty: {props.qty}</p>
+                <p data-testid={`qty${props.id}`}> Qty: {props.qty}</p>
                 <div className="col_1of2 quantity-text">
-                    <p>{props.curr} {props.price}</p>
+                    <p data-testid={`price${props.id}`}>{props.curr} {props.price}</p>
                 </div>
 
             </div>
             <div className="inner_container">
 
                 <div className="col_1of2 align-center picker">
-                    <p> Cost: {props.curr} {value}</p>
+                    <p data-testid={`cost${props.id}`}> Cost: {props.curr} {value}</p>
 
 
                 </div>
