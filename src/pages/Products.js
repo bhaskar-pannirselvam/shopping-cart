@@ -1,6 +1,7 @@
 import Item from '../component/Item';
 import './products.css';
 import { connect } from "react-redux";
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 
 function Products(props) {
@@ -16,8 +17,10 @@ function Products(props) {
 
 
                 <div >
-                    <img src="https://www.cookfood.net/Content/images/basket2.png" />
-                    <h3>Items: {props.totQty}</h3>
+                    <Link to="/checkout">
+                        <img src="https://www.cookfood.net/Content/images/basket2.png" />
+                        <h3>Items: {props.totQty}</h3>
+                    </Link>
                 </div>
             </div>
 

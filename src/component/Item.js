@@ -2,6 +2,15 @@
 import React, { useState } from "react";
 import { connect } from 'react-redux';
 import { addToCart, removeFromCart, adjustQty } from "../redux/actions";
+import { saveState } from "../redux/localStorage";
+import store from "../redux/store";
+
+store.subscribe(() => {
+    saveState({
+        cart: store.getState().shop.cart,
+    });
+});
+
 
 const Item = (props, addToCart, removeFromCart, adjustQty) => {
     const image = require.context('../images', true);
