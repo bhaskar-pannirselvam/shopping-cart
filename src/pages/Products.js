@@ -17,7 +17,7 @@ function Products(props) {
 
 
                 <div >
-                    <Link to="/checkout">
+                    <Link to="/checkout" className="cart">
                         <img src="https://www.cookfood.net/Content/images/basket2.png" />
                         <h3 data-testid={`cartQty`}>Items: {props.totQty}</h3>
                     </Link>
