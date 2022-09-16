@@ -32,9 +32,24 @@ function Checkout(props) {
                     id={it.id} 
                     key={it.id}/>)}
             </div>
-            <div className="grid_12 ">
-                <p data-testid={`total`} >Total Amount: INR {total}</p>
+           
+            
+
+            <div className="container tot" ><li className="grid_4 item">
+            
+            
+            <div className=" totamt"  >
+                <h3  >
+                Total Amount: 
+                </h3>
             </div>
+            <div className="totval" data-testid={`total`}>
+               <h3> INR {total} </h3>
+            </div>
+
+
+        </li>
+        </div>
         </div>
     );
 }

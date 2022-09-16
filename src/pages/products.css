@@ -318,6 +318,33 @@ h1 {
   align-items: flex-end;
 }
 
+.cart {
+  margin: 0;
+  padding: 0;
+}
+
+.cart img {
+  height: 80%;
+  width: 80%;
+}
+
+.cart h3 {
+  font-size: 1.5em;
+  margin: 0.5em;
+}
+
+.tot {
+  margin-top: 0px;
+}
+
+.totamt {
+  width: 65%;
+}
+
+.totval {
+  width: 35%;
+}
+
 @media only screen and (max-width: 900px) {
   h1 {
     font-size: 3em;
@@ -347,6 +374,20 @@ h1 {
   .btn-quantity {
     font-size: 0.6em;
   }
+
+  .cart img {
+    height: 40%;
+    width:  40%;
+  }
+  
+  .cart h3 {
+    font-size: 1.6em;
+    margin: 0.5em;
+  }
+
+  .tot {
+    margin-top: 0px;
+  }
 }
 @media only screen and (max-width: 768px) {
   .item {
@@ -369,12 +410,12 @@ h1 {
   }
 
   .item .details h3 {
-    font-size: 2.6em;
+    font-size: 2 em;
     text-align: center;
   }
 
   h1 {
-    font-size: 4em;
+    font-size: 2em;
   }
 
   .header {
@@ -403,7 +444,7 @@ h1 {
   }
 
   .container {
-    margin-bottom: 230px;
+    margin-bottom: 20px;
     margin-top: 120px;
   }
 
@@ -438,6 +479,29 @@ h1 {
   .logo {
     width: 50%;
   }
+
+  .cart img {
+    height: 70%;
+    width:  70%;
+  }
+  
+  .cart h3 {
+    font-size: 1.5em; 
+    margin: 0.5em;
+  }
+
+  .tot {
+    margin-top: 0px;
+  }
+
+  .totamt {
+    width: 100%;
+  }
+  
+  .totval {
+    width: 100%;
+    
+  }
 }
 @media only screen and (max-width: 480px) {
   .btn-checkout {
@@ -450,5 +514,19 @@ h1 {
 
   .btn-remove {
     font-size: 1.2em;
+  }
+
+  .cart img {
+    height: 50%;
+    width: 50%;
+  }
+  
+  .cart h3 {
+    font-size: 1em;
+    margin: 0.5em;
+  }
+
+  .tot {
+    margin-top: 0px;
   }
 }
